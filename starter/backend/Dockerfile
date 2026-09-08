@@ -21,4 +21,4 @@ RUN cd /app && (pipenv install --system --skip-lock || pip install --no-cache-di
 COPY . /app
 WORKDIR /app
 
-CMD uwsgi --http :5000 --master --enable-threads -s /var/www/app/app.sock --manage-script-name --mount /=app:app
+CMD ["uwsgi", "--http", ":5000", "--master", "--enable-threads", "--wsgi-file", "__init__.py", "--callable", "app"]
