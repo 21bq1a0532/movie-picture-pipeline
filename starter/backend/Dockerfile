@@ -18,7 +18,9 @@ RUN mkdir -p /var/www/app && mkdir /app
 COPY Pipfile* /app/
 RUN cd /app && (pipenv install --system --skip-lock || pip install --no-cache-dir flask flask-cors uwsgi pytest)
 
-COPY . /app
-WORKDIR /app
+ENV PYTHONPATH=/
 
-CMD ["uwsgi", "--http", ":5000", "--master", "--enable-threads", "--wsgi-file", "__init__.py", "--callable", "app"]
+COPY . /app
+WORKDIR /
+
+CMD ["uwsgi", "--http", ":5000", "--master", "--enable-threads", "--pythonpath", "/", "--mount", "/=app:app", "--manage-script-name"]
