@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [lint, test]
     env:
-      REACT_APP_MOVIE_API_URL: ${{ secrets.REACT_APP_MOVIE_API_URL || vars.REACT_APP_MOVIE_API_URL || 'http://localhost:5000' }}
+      REACT_APP_MOVIE_API_URL: ${{ secrets.REACT_APP_MOVIE_API_URL || vars.REACT_APP_MOVIE_API_URL || 'http://a931012b0d6134325a8ed7f8997d7be5-469252973.us-east-1.elb.amazonaws.com' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
